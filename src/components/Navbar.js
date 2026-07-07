@@ -32,12 +32,11 @@ export default function Navbar({
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              {/* <NavLink className="nav-link active" aria-current="page" to="/" style={({ isActive})  => ({ color: isActive ? 'blue' : 'black' })}>
+              <NavLink className="nav-link active" aria-current="page" to="/" style={({ isActive})  => ({ color: isActive ? 'blue' : 'black' })}>
                 Home
-              </NavLink> */}
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+              </NavLink>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link className="nav-link" to="/about">
                 {aboutText}
               </Link>
@@ -51,7 +50,7 @@ export default function Navbar({
               <Link className="nav-link" to="/dashboard/settings">
                 Settings
               </Link>
-            </li> */}
+            </li>
           </ul>
         </div>
 
