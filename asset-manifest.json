@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/hinal369/textUtils-react/static/css/main.e6c13ad2.css",
+    "main.js": "/hinal369/textUtils-react/static/js/main.5e2de1e5.js",
+    "static/js/453.0547c99f.chunk.js": "/hinal369/textUtils-react/static/js/453.0547c99f.chunk.js",
+    "index.html": "/hinal369/textUtils-react/index.html",
+    "main.e6c13ad2.css.map": "/hinal369/textUtils-react/static/css/main.e6c13ad2.css.map",
+    "main.5e2de1e5.js.map": "/hinal369/textUtils-react/static/js/main.5e2de1e5.js.map",
+    "453.0547c99f.chunk.js.map": "/hinal369/textUtils-react/static/js/453.0547c99f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.5e2de1e5.js"
+  ]
+}
