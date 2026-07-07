@@ -15,6 +15,23 @@ export default function TextForm({ heading, showAlert }) {
     showAlert("Converted to lowercase!", "success");
   };
 
+  const handleCapitalizeClick = () => {
+    const capitalizeWords = text.split(" ").map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+    setText(capitalizeWords.join(" "));
+    showAlert("Capitalized the first letter of each word!", "success");
+  };
+
+  const handleRemoveExtraSpacesClick = () => {
+    const removeSpace = text.split(" ").filter((element) => {
+      return element.length !== 0;
+    });
+    setText(removeSpace.join(" "));
+    showAlert("Remove extra spaces!", "success");
+
+  };
+
   const handleClearTextClick = () => {
     setText("");
     showAlert("Clear Text!", "success");
@@ -40,16 +57,30 @@ export default function TextForm({ heading, showAlert }) {
             className="btn btn-primary mb-3"
             onClick={handleUppercaseClick}
           >
-            Convert to uppercase
+            Uppercase
           </button>
           <button
             type="submit"
             className="btn btn-primary mb-3 ms-2"
             onClick={handleLowercaseClick}
           >
-            Convert to lowercase
+            Lowercase
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary mb-3 ms-2"
+            onClick={handleCapitalizeClick}
+          >
+            Capitalize
           </button>
            <button
+            type="submit"
+            className="btn btn-primary mb-3 ms-2"
+            onClick={handleRemoveExtraSpacesClick}
+          >
+            Remove Extra Spaces
+          </button>
+          <button
             type="submit"
             className="btn btn-primary mb-3 ms-2"
             onClick={handleClearTextClick}
@@ -61,11 +92,20 @@ export default function TextForm({ heading, showAlert }) {
       <div className="container my-2">
         <h1>Your Text Summary</h1>
         <p>
-          {text.split(" ").length - 1} Words and {text.length} Characters
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          Words and {text.length} Characters
         </p>
         <p>{0.008 * text.split(" ").length} Minutes read</p>
         <h2>Preview</h2>
-        <p>{text.length    > 0 ? text : "Enter text in the textbox above to preview it here."}</p>
+        <p>
+          {text.length > 0
+            ? text
+            : "Enter text in the textbox above to preview it here."}
+        </p>
       </div>
     </>
   );
