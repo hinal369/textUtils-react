@@ -4,9 +4,9 @@ import About from "./components/About";
 import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
-import Dashboard from "./components/Dashboard";
-import Settings from "./components/Settings";
-import Team from './components/Team';
+// import Dashboard from "./components/Dashboard";
+// import Settings from "./components/Settings";
+// import Team from './components/Team';
 import { useState } from "react";
 
 function App() {
@@ -50,8 +50,8 @@ function App() {
       <Navbar aboutText="About us" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
       <div className="container my-3">
-        <Routes>
-          <Route
+        {/* <Routes> */}
+          {/* <Route
             index
             element={
               <TextForm
@@ -59,18 +59,18 @@ function App() {
                 showAlert={showAlert}
               />
             }
-          />
-          <Route path="/about" element={<About />} />
+          /> */}
+          {/* <Route path="/about" element={<About />} /> */}
 
           {/* <Route path="dashboard" element={<Dashboard />}> */}
-          <Route path="dashboard">
+          {/* <Route path="dashboard">
             <Route index element={<Dashboard />} />
             <Route path="settings" element={<Settings />} />
-          </Route>
+          </Route> */}
           
-          <Route path="teams/:teamId/user/:userId?" element={<Team />} />
-        </Routes>
-        {/* <TextForm heading="Enter the text to analyze " showAlert={ showAlert }/> */}
+          {/* <Route path="teams/:teamId/user/:userId?" element={<Team />} /> */}
+        {/* </Routes> */}
+        <TextForm heading="Enter the text to analyze " showAlert={ showAlert }/>
       </div>
     </>
   );
