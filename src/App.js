@@ -1,12 +1,16 @@
+import { Route, Routes } from "react-router";
 import "./App.css";
+import About from "./components/About";
 import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
+import Dashboard from "./components/Dashboard";
+import Settings from "./components/Settings";
+import Team from './components/Team';
 import { useState } from "react";
 
-
 function App() {
-  const [ mode, setMode ] = useState("light");
+  const [mode, setMode] = useState("light");
   const toggleMode = () => {
     const navbar = document.getElementById("navbar");
     const icon = document.getElementById("icon");
@@ -18,7 +22,7 @@ function App() {
       navbar.classList.add("bg-dark");
       icon.classList.remove("fa-moon-o");
       icon.classList.add("fa-sun-o");
-      icon.style.color = "yellow";  
+      icon.style.color = "yellow";
       showAlert("Dark mode has been enabled", "success");
     } else {
       setMode("light");
@@ -31,22 +35,42 @@ function App() {
       icon.style.color = "black";
       showAlert("Light mode has been enabled", "success");
     }
-  }
+  };
 
-  const [ alert, setAlert ] = useState(null);
+  const [alert, setAlert] = useState(null);
   const showAlert = (message, type) => {
-    setAlert({ message, type })
+    setAlert({ message, type });
     setTimeout(() => {
       setAlert(null);
-    }, 2000)
-  }
+    }, 2000);
+  };
   return (
     <>
       {/* Not passing title here will correctly trigger the JavaScript default parameter */}
-      <Navbar aboutText="About us" mode={ mode } toggleMode={ toggleMode }/>
-      <Alert alert={ alert } />
+      <Navbar aboutText="About us" mode={mode} toggleMode={toggleMode} />
+      <Alert alert={alert} />
       <div className="container my-3">
-        <TextForm heading="Enter the text to analyze " showAlert={ showAlert }/>
+        <Routes>
+          <Route
+            index
+            element={
+              <TextForm
+                heading="Enter the text to analyze "
+                showAlert={showAlert}
+              />
+            }
+          />
+          <Route path="/about" element={<About />} />
+
+          {/* <Route path="dashboard" element={<Dashboard />}> */}
+          <Route path="dashboard">
+            <Route index element={<Dashboard />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          
+          <Route path="teams/:teamId/user/:userId?" element={<Team />} />
+        </Routes>
+        {/* <TextForm heading="Enter the text to analyze " showAlert={ showAlert }/> */}
       </div>
     </>
   );

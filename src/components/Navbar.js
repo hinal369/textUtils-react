@@ -1,3 +1,5 @@
+import { NavLink, Link } from "react-router";
+
 // 1. Destructure props right here and assign default values
 export default function Navbar({
   title = "Set Title Here",
@@ -13,9 +15,9 @@ export default function Navbar({
     >
       <div className="container-fluid">
         {/* 2. Notice you don't need 'props.' anymore! Just use the variable name */}
-        <a className="navbar-brand" href="/">
-          {title = "TextUtils"}
-        </a>
+        <Link className="navbar-brand" to="/">
+          {(title = "TextUtils")}
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,14 +32,24 @@ export default function Navbar({
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <NavLink className="nav-link active" aria-current="page" to="/" style={({ isActive})  => ({ color: isActive ? 'blue' : 'black' })}>
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" to="/about">
                 {aboutText}
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/dashboard">
+                Dashboard
+              </Link>
+            </li>
+             <li className="nav-item">
+              <Link className="nav-link" to="/dashboard/settings">
+                Settings
+              </Link>
             </li>
           </ul>
         </div>
