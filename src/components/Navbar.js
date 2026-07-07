@@ -1,6 +1,3 @@
-import React from "react";
-// You can completely delete the import PropTypes from 'prop-types' line
-
 // 1. Destructure props right here and assign default values
 export default function Navbar({
   title = "Set Title Here",

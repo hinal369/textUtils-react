@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-export default function TextForm({ heading }) {
+export default function TextForm({ heading, showAlert }) {
   const handleUppercaseClick = () => {
     setText(text.toUpperCase());
+    showAlert("Converted to uppercase!", "success");
   };
 
   const handleOnChange = (event) => {
@@ -11,10 +12,12 @@ export default function TextForm({ heading }) {
 
   const handleLowercaseClick = () => {
     setText(text.toLowerCase());
+    showAlert("Converted to lowercase!", "success");
   };
 
   const handleClearTextClick = () => {
     setText("");
+    showAlert("Clear Text!", "success");
   };
   const [text, setText] = useState("");
 
@@ -62,7 +65,7 @@ export default function TextForm({ heading }) {
         </p>
         <p>{0.008 * text.split(" ").length} Minutes read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length    > 0 ? text : "Enter text in the textbox above to preview it here."}</p>
       </div>
     </>
   );
