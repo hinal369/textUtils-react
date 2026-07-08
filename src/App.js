@@ -14,6 +14,7 @@ function App() {
   const toggleMode = () => {
     const navbar = document.getElementById("navbar");
     const icon = document.getElementById("icon");
+    const accordion = document.getElementById('accordionExample');
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#182a39";
@@ -23,6 +24,10 @@ function App() {
       icon.classList.remove("fa-moon-o");
       icon.classList.add("fa-sun-o");
       icon.style.color = "yellow";
+      // document.getElementsByClassName("accordion-body").backgroundColor = '#182a39';
+      accordion.style.setProperty('--bs-accordion-bg', '#182a39');
+      accordion.style.setProperty('--bs-accordion-color', '#ffffff');
+      accordion.style.setProperty('--bs-accordion-btn-color', '#ffffff');
       showAlert("Dark mode has been enabled", "success");
     } else {
       setMode("light");
@@ -33,6 +38,10 @@ function App() {
       icon.classList.remove("fa-sun-o");
       icon.classList.add("fa-moon-o");
       icon.style.color = "black";
+      // document.getElementsByClassName("accordion-body").backgroundColor = '#ffffff';
+      accordion.style.setProperty('--bs-accordion-bg', '#ffffff');
+      accordion.style.setProperty('--bs-accordion-color', '#000000');
+      accordion.style.setProperty('--bs-accordion-btn-color', '#000000');
       showAlert("Light mode has been enabled", "success");
     }
   };
