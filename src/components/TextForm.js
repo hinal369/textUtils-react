@@ -1,23 +1,33 @@
 import { useState } from "react";
 
 export default function TextForm({ heading, showAlert }) {
-  const handleUppercaseClick = () => {
-    if (!text) return;
-    setText(text.toUpperCase());
-    showAlert("Converted to uppercase!", "success");
-  };
+  const [text, setText] = useState("");
+
+  const wordCount = text
+    .split(/\s+/)
+    .filter((word) => word.length !== 0).length;
+  const readTime = (0.008 * wordCount).toFixed(2);
+  const isTextEmpty = text.trim().length === 0;
 
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
 
+  const handleUppercaseClick = () => {
+    if (isTextEmpty) return;
+    setText(text.toUpperCase());
+    showAlert("Converted to uppercase!", "success");
+  };
+
   const handleLowercaseClick = () => {
+    if (isTextEmpty) return;
     setText(text.toLowerCase());
     showAlert("Converted to lowercase!", "success");
   };
 
   const handleCapitalizeClick = () => {
-    const capitalizeWords = text.split(" ").map((word) => {
+    if (isTextEmpty) return;
+    const capitalizeWords = text.split(/\s+/).map((word) => {
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     });
     setText(capitalizeWords.join(" "));
@@ -25,19 +35,19 @@ export default function TextForm({ heading, showAlert }) {
   };
 
   const handleRemoveExtraSpacesClick = () => {
-    const removeSpace = text.split(" ").filter((element) => {
-      return element.length !== 0;
+    if (isTextEmpty) return;
+    const removeSpace = text.split(/[ ]+/).filter((word) => {
+      return word.length !== 0;
     });
     setText(removeSpace.join(" "));
     showAlert("Remove extra spaces!", "success");
-
   };
 
   const handleClearTextClick = () => {
+    if (isTextEmpty) return;
     setText("");
     showAlert("Clear Text!", "success");
   };
-  const [text, setText] = useState("");
 
   return (
     <>
@@ -55,6 +65,7 @@ export default function TextForm({ heading, showAlert }) {
         <div className="col-mb-3">
           <button
             type="submit"
+            disabled={isTextEmpty}
             className="btn btn-primary mb-3"
             onClick={handleUppercaseClick}
           >
@@ -62,6 +73,7 @@ export default function TextForm({ heading, showAlert }) {
           </button>
           <button
             type="submit"
+            disabled={isTextEmpty}
             className="btn btn-primary mb-3 ms-2"
             onClick={handleLowercaseClick}
           >
@@ -69,13 +81,15 @@ export default function TextForm({ heading, showAlert }) {
           </button>
           <button
             type="submit"
+            disabled={isTextEmpty}
             className="btn btn-primary mb-3 ms-2"
             onClick={handleCapitalizeClick}
           >
             Capitalize
           </button>
-           <button
+          <button
             type="submit"
+            disabled={isTextEmpty}
             className="btn btn-primary mb-3 ms-2"
             onClick={handleRemoveExtraSpacesClick}
           >
@@ -83,6 +97,7 @@ export default function TextForm({ heading, showAlert }) {
           </button>
           <button
             type="submit"
+            disabled={isTextEmpty}
             className="btn btn-primary mb-3 ms-2"
             onClick={handleClearTextClick}
           >
@@ -93,19 +108,14 @@ export default function TextForm({ heading, showAlert }) {
       <div className="container my-2">
         <h1>Your Text Summary</h1>
         <p>
-          {
-            text.split(" ").filter((element) => {
-              return element.length !== 0;
-            }).length
-          }{" "}
-          Words and {text.length} Characters
+          {wordCount} Words and {text.length} Characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
+        <p>{readTime} Minutes read</p>
         <h2>Preview</h2>
         <p>
-          {text.length > 0
-            ? text
-            : "Enter text in the textbox above to preview it here."}
+          {isTextEmpty
+            ? "Enter text in the textbox above to preview it here."
+            : text}
         </p>
       </div>
     </>

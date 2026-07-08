@@ -10,7 +10,7 @@ import Team from "./components/Team";
 import { useState } from "react";
 
 function App() {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("dark");
   const toggleMode = () => {
     const navbar = document.getElementById("navbar");
     const icon = document.getElementById("icon");
