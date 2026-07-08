@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Dashboard from "./components/Dashboard";
 import Settings from "./components/Settings";
-import Team from './components/Team';
+import Team from "./components/Team";
 import { useState } from "react";
 
 function App() {
@@ -14,7 +14,6 @@ function App() {
   const toggleMode = () => {
     const navbar = document.getElementById("navbar");
     const icon = document.getElementById("icon");
-    const accordion = document.getElementById('accordionExample');
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#182a39";
@@ -24,10 +23,6 @@ function App() {
       icon.classList.remove("fa-moon-o");
       icon.classList.add("fa-sun-o");
       icon.style.color = "yellow";
-      // document.getElementsByClassName("accordion-body").backgroundColor = '#182a39';
-      accordion.style.setProperty('--bs-accordion-bg', '#182a39');
-      accordion.style.setProperty('--bs-accordion-color', '#ffffff');
-      accordion.style.setProperty('--bs-accordion-btn-color', '#ffffff');
       showAlert("Dark mode has been enabled", "success");
     } else {
       setMode("light");
@@ -38,10 +33,6 @@ function App() {
       icon.classList.remove("fa-sun-o");
       icon.classList.add("fa-moon-o");
       icon.style.color = "black";
-      // document.getElementsByClassName("accordion-body").backgroundColor = '#ffffff';
-      accordion.style.setProperty('--bs-accordion-bg', '#ffffff');
-      accordion.style.setProperty('--bs-accordion-color', '#000000');
-      accordion.style.setProperty('--bs-accordion-btn-color', '#000000');
       showAlert("Light mode has been enabled", "success");
     }
   };
@@ -69,14 +60,14 @@ function App() {
               />
             }
           />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About mode={mode}/>} />
 
           {/* <Route path="dashboard" element={<Dashboard />}> */}
           <Route path="dashboard">
             <Route index element={<Dashboard />} />
             <Route path="settings" element={<Settings />} />
           </Route>
-          
+
           <Route path="teams/:teamId/user/:userId?" element={<Team />} />
         </Routes>
         {/* <TextForm heading="Enter the text to analyze " showAlert={ showAlert }/> */}

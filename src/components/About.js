@@ -1,9 +1,16 @@
-
-export default function About() {
+export default function About({ mode }) {
   return (
     <div className="container">
       <h2>About Us</h2>
-      <div className="accordion" id="accordionExample">
+      <div
+        className="accordion"
+        id="accordionExample"
+        style={{
+          "--bs-accordion-bg": mode === "dark" ? "#182a39" : "#ffffff",
+          "--bs-accordion-color":  mode === "dark" ? "#ffffff" : "#000000",
+          "--bs-accordion-btn-color":  mode === "dark" ? "#ffffff" : "#000000",
+        }}
+      >
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
